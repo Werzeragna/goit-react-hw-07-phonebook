@@ -3,7 +3,6 @@ import { StyledInput, StyledLabel } from './Filter.styled';
 import { setFilter } from 'redux/filterSlice';
 import { getFilter } from 'redux/contactsFetch';
 
-
 export const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
