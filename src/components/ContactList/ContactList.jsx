@@ -1,31 +1,32 @@
 import {
+  Contacts,
   StyledButton,
   StyledContactItem,
-  StyledContactList,
   StyledUser,
 } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter, deleteContact } from '../../redux/slice';
+import {
+  getContacts,
+  getFilter,
+  deleteContact,
+} from '../../redux/contactsFetch';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const onfilter = useSelector(getFilter);
 
-  const findContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(onfilter.toLowerCase())
-    );
-  };
-  const filteredContacts = findContacts();
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(onfilter.toLowerCase())
+  );
 
   return (
-    <StyledContactList>
-      {filteredContacts.map(({ id, name, number }) => {
+    <Contacts>
+      {filteredContacts.map(({ id, name, phone }) => {
         return (
           <StyledContactItem key={id}>
             <StyledUser>
-              {name}:{number}
+              {name}:{phone}
             </StyledUser>
             <StyledButton
               type="button"
@@ -36,6 +37,6 @@ export const ContactList = () => {
           </StyledContactItem>
         );
       })}
-    </StyledContactList>
+    </Contacts>
   );
 };
